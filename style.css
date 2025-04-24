@@ -8,7 +8,7 @@ body {
   align-items: start;
   min-height: 100vh;
   height: 100vh;
-  padding-top: 5vh;
+  /* padding-top: 5vh; */
   user-select: none;
   overflow: hidden;
 }
@@ -63,12 +63,20 @@ button {
 }
 
 button:disabled {
-  background: #555;
+  background: #222;
   cursor: default;
 }
 
 button:hover:enabled {
   background: #444;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px; /* ボタン間の隙間 */
+  margin-bottom: 70px;
 }
 
 .hidden {
