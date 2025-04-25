@@ -11,6 +11,7 @@ let startTime = null;
 let timerInterval = null;
 let playing = false;
 let isAiSolving = false;
+let trialCount = 0; // 試行回数カウンタ
 
 function createTiles() {
   tiles = [...Array(8).keys()].map(n => n + 1);
@@ -191,8 +192,12 @@ function solvePuzzle(initialTiles) {
     const key = current.state.join(',');
     if (visited.has(key)) continue;
     visited.add(key);
+    trialCount++;
 
-    if (key === goal.join(',')) return current.path;
+    if (key === goal.join(',')) {
+      console.log(`[HELP AI] trialCount: ${trialCount}`);
+      console.log(`[HELP AI] solution: ${current.path.length} sreps`);
+      return current.path;}
 
     for (const neighbor of getNeighbors(current.state)) {
       open.push({
@@ -207,7 +212,7 @@ function solvePuzzle(initialTiles) {
 
 function autoSolve() {
   const solution = solvePuzzle(tiles);
-  console.log('[AI] solution:', solution);
+  console.log('[HELP AI] solution:', solution);
 
   let index = 0;
   const interval = setInterval(() => {
